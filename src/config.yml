@@ -1,0 +1,5 @@
+accesstoken: YOURACCESSTOKEN
+lang: en
+replyToPlayer: false
+botname: "&5ResponseBot: "
+chatFormat: "[BOTNAME][RESPONSE]"

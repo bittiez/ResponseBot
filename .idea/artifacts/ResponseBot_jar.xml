@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ResponseBot:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ResponseBot_jar</output-path>
+    <root id="archive" name="ResponseBot.jar">
+      <element id="module-output" name="ResponseBot" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/fluent-hc-4.5.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/httpcore-4.4.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/httpclient-4.5.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/commons-logging-1.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
