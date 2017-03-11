@@ -3,3 +3,4 @@ lang: en
 replyToPlayer: false
 botname: "&5ResponseBot: "
 chatFormat: "[BOTNAME][RESPONSE]"
+defaultColor: &4

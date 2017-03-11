@@ -37,7 +37,6 @@ public class checkAPI implements Runnable{
                     + "&sessionId=" + player.getUniqueId()
             )
                     .addHeader("Authorization", "Bearer " + config.getString("accesstoken"));
-            log.log(Level.INFO, res.toString());
 
             String json = res.execute().returnContent().asString();
             JSONParser parser = new JSONParser();
@@ -68,7 +67,9 @@ public class checkAPI implements Runnable{
         return ChatColor.translateAlternateColorCodes('&',
                 config.getString("chatFormat")
                         .replace("[BOTNAME]", config.getString("botname"))
-                        .replace("[RESPONSE]", response));
+                        .replace("[RESPONSE]", response)
+                        .replace("[DEFAULT]", config.getString("defaultColor"))
+        );
     }
 
 }
