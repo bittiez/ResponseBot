@@ -13,7 +13,7 @@ This will use API.ai to respond to possible player questions in game.
 Create an account with https://API.ai and create Intents(Questions players may ask with text responses)
 
 Note:
-When creating text responses to your Intents you can use color codes ( &1, &2, etc ) and you can use [DEFAULT] to insert the defaultColor config option(This is useful when you want to reset your text color but you aren't sure if you may change it in your config in the future)
+When creating text responses to your Intents you can use color codes ( &1, &2, etc ) and you can use [DEFAULT] to insert the defaultColor config option(This is useful when you want to reset your text color but you aren't sure if you may change it in your config in the future) you can also use [PLAYER] to insert the players name in a response
 
 #Permissions
 
