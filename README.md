@@ -28,6 +28,7 @@ https://github.com/bittiez/ResponseBot/blob/master/src/plugin.yml
 - - A user expression could be Hello
 - - A text response could be Hey there!
 
+
 - Place the jar file in your plugins folder
 - Restart your server
 - Edit the config file and update your accessToken(You can get that by click on the settings icon for your new Agent on API.ai)
