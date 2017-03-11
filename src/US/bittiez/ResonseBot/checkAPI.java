@@ -47,11 +47,15 @@ public class checkAPI implements Runnable{
 
             String response = fulfillment.get("speech").toString();
             if(response.length() > 0) {
-                if (config.getBoolean("replyToPlayer", false)) {
-                    player.sendMessage(genResponse(response));
-                } else {
-                    plugin.getServer().broadcastMessage(genResponse(response));
-                }
+                plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                    public void run() {
+                        if (config.getBoolean("replyToPlayer", false)) {
+                            player.sendMessage(genResponse(response));
+                        } else {
+                            plugin.getServer().broadcastMessage(genResponse(response));
+                        }
+                    }
+                }, 20);
             }
 
         } catch (Exception err) {
