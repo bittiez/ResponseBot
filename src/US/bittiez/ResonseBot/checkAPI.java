@@ -68,7 +68,7 @@ public class checkAPI implements Runnable{
                 config.getString("chatFormat")
                         .replace("[BOTNAME]", config.getString("botname"))
                         .replace("[RESPONSE]", response)
-                        .replace("[DEFAULT]", config.getString("defaultColor"))
+                        .replace("[DEFAULT]", config.getString("defaultColor", "&4"))
                         .replace("[PLAYER]", this.player.getDisplayName())
         );
     }
