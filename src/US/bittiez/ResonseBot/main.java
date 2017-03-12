@@ -11,7 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
 
-;
 
 public class main extends JavaPlugin implements Listener{
     private static Logger log;
@@ -39,14 +38,17 @@ public class main extends JavaPlugin implements Listener{
 
     @EventHandler
     public void onPlayerChatEvent(AsyncPlayerChatEvent e){
-        checkAPI API = new checkAPI();
-        API.player = e.getPlayer();
-        API.message = e.getMessage();
-        API.plugin = this;
-        API.config = config;
-        API.log = log;
+        if(!e.isCancelled()) {
+            
+            checkAPI API = new checkAPI();
+            API.player = e.getPlayer();
+            API.message = e.getMessage();
+            API.plugin = this;
+            API.config = config;
+            API.log = log;
 
-        new Thread(API).start();
+            new Thread(API).start();
+        }
     }
 
     private void createConfig() {
