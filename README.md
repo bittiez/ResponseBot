@@ -37,9 +37,3 @@ https://github.com/bittiez/ResponseBot/blob/master/src/plugin.yml
 #Configuration
 
 https://github.com/bittiez/ResponseBot/blob/master/src/config.yml
-
-
-#To Do
- 
- - Add a player name placeholder
- - Fix the reload command
