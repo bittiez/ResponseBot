@@ -39,15 +39,18 @@ public class main extends JavaPlugin implements Listener{
     @EventHandler
     public void onPlayerChatEvent(AsyncPlayerChatEvent e){
         if(!e.isCancelled()) {
-            
-            checkAPI API = new checkAPI();
-            API.player = e.getPlayer();
-            API.message = e.getMessage();
-            API.plugin = this;
-            API.config = config;
-            API.log = log;
+            if(!e.getMessage().isEmpty()) {
+                if(e.getMessage().startsWith(config.getString("requiredPrefix", ""))) {
+                    checkAPI API = new checkAPI();
+                    API.player = e.getPlayer();
+                    API.message = e.getMessage();
+                    API.plugin = this;
+                    API.config = config;
+                    API.log = log;
 
-            new Thread(API).start();
+                    new Thread(API).start();
+                }
+            }
         }
     }
 

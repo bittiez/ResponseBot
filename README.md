@@ -35,5 +35,15 @@ https://github.com/bittiez/ResponseBot/blob/master/src/plugin.yml
 - Restart your server
 
 #Configuration
+**replyToPlayer**: false
+
+If **false**, this will send the response to the entire server as a broadcast, if **true** it will send the response directly to the player
+
+
+**requiredPrefix**: ""
+
+If this is set to something such as **"?"**, the bot will only listen to chat that begins with ? (So a player could type ?what is our website), if left blank the bot will listen to everything
+
+
 
 https://github.com/bittiez/ResponseBot/blob/master/src/config.yml
