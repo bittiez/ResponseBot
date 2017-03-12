@@ -3,7 +3,7 @@ version: 1.1.0
 author: bittiez
 main: US.bittiez.ResonseBot.main
 commands:
-    reload:
+    RB:
         description: /RB reload will reload the config file.
         usage: /RB reload
         permission: ResponseBot.reload
