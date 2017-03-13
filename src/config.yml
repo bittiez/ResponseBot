@@ -4,4 +4,4 @@ replyToPlayer: false
 botname: "&5ResponseBot: "
 chatFormat: "[BOTNAME][RESPONSE]"
 defaultColor: &4
-requiredPrefix: ""
+requiredPrefix: "?"
