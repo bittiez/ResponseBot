@@ -43,7 +43,7 @@ public class main extends JavaPlugin implements Listener{
                 if(e.getMessage().startsWith(config.getString("requiredPrefix", ""))) {
                     checkAPI API = new checkAPI();
                     API.player = e.getPlayer();
-                    API.message = e.getMessage();
+                    API.message = e.getMessage().substring(config.getString("requiredPrefix", "").length());
                     API.plugin = this;
                     API.config = config;
                     API.log = log;
