@@ -1,7 +1,20 @@
-accesstoken: YOURACCESSTOKEN
-lang: en
+# Go to api.ai -> Login to your account -> Click the settings icon next to your agent -> Look for Client access token, paste it here
+accesstoken: "YOURACCESSTOKEN"
+
+# https://docs.api.ai/docs/languages
+lang: "en"
+
+# Reply to the player( true ) or show to the server( false )
 replyToPlayer: false
+
+# The name of your bot to display in chat:
 botname: "&5ResponseBot: "
+
+# The format the bot will look like in chat:
 chatFormat: "[BOTNAME][RESPONSE]"
-defaultColor: &4
+
+# This will be used when you use [DEFAULT] in a bot response, [DEFAULT] will be replaced with this:
+defaultColor: "&4"
+
+# If there is a prefix set, the bot will only respond to chat that begins with the defined prefix:
 requiredPrefix: "?"
