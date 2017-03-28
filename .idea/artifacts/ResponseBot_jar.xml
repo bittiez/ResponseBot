@@ -7,7 +7,6 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/reqlibs/httpcore-4.4.6.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/reqlibs/httpclient-4.5.3.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/reqlibs/commons-logging-1.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/reqlibs/UtilityAPI.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
