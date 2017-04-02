@@ -1,5 +1,10 @@
 package US.bittiez.ResonseBot;
 
+import ai.api.AIConfiguration;
+import ai.api.AIDataService;
+import ai.api.AIServiceException;
+import ai.api.model.AIRequest;
+import ai.api.model.AIResponse;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
