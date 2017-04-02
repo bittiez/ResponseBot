@@ -1,15 +1,15 @@
 package US.bittiez.ResonseBot;
 
-import org.apache.http.client.fluent.Request;
+import ai.api.AIConfiguration;
+import ai.api.AIDataService;
+import ai.api.AIServiceException;
+import ai.api.model.AIRequest;
+import ai.api.model.AIResponse;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-import java.net.URLEncoder;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class checkAPI implements Runnable{
@@ -20,43 +20,36 @@ public class checkAPI implements Runnable{
     public Plugin plugin;
 
     @Override
-    public void run() {
-        this.message = ChatColor.stripColor(this.message);
-
-        String API_BASE = "https://api.api.ai/api";
+    public void run(){
+        AIConfiguration aiConfiguration = new AIConfiguration(config.getString("accesstoken"), AIConfiguration.SupportedLanguages.fromLanguageTag(config.getString("lang", "en")));
+        AIDataService dataService = new AIDataService(aiConfiguration);
+        AIRequest request = new AIRequest(ChatColor.stripColor(this.message));
+        request.setSessionId(player.getUniqueId().toString());
         try {
-            Request res = Request.Get(API_BASE
-                    + "/query"
-                    + "?v=20150910"
-                    + "&query="
-                    + URLEncoder.encode(message, "UTF-8")
-                    + "&lang=" + config.getString("lang", "en")
-                    + "&sessionId=" + player.getUniqueId()
-            )
-                    .addHeader("Authorization", "Bearer " + config.getString("accesstoken"));
-
-            String json = res.execute().returnContent().asString();
-            JSONParser parser = new JSONParser();
-            JSONObject parsed = (JSONObject)parser.parse(json);
-            JSONObject result = (JSONObject)parsed.get("result");
-            JSONObject fulfillment = (JSONObject)result.get("fulfillment");
-
-            String response = fulfillment.get("speech").toString();
-            if(response.length() > 0) {
-                plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-                    public void run() {
-                        if (config.getBoolean("replyToPlayer", false)) {
-                            player.sendMessage(genResponse(response));
-                        } else {
-                            plugin.getServer().broadcastMessage(genResponse(response));
+            AIResponse response = dataService.request(request);
+            if (response.getStatus().getCode() == 200) {
+                String res = response.getResult().getFulfillment().getSpeech();
+                if(res.length() > 0){
+                    plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                        public void run() {
+                            if (config.getBoolean("replyToPlayer", false)) {
+                                player.sendMessage(genResponse(res));
+                            } else {
+                                plugin.getServer().broadcastMessage(genResponse(res));
+                            }
                         }
-                    }
-                }, 20);
+                    }, 20);
+                }
+            } else {
+                plugin.getLogger().info("There was an error with ResponseBot");
+                plugin.getLogger().info(response.getStatus().getErrorDetails());
             }
 
-        } catch (Exception err) {
-            log.log(Level.WARNING, "ResponseBot encountered an unknown error.");
-            err.printStackTrace();
+
+
+
+        } catch (AIServiceException e) {
+            plugin.getLogger().warning("We ran into an error trying to get a response, please check that your client access token is correctly configured!");
         }
     }
 
