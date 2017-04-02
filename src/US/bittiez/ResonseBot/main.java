@@ -59,7 +59,7 @@ public class main extends JavaPlugin implements Listener{
     public void onPlayerChatEvent(AsyncPlayerChatEvent e){
         if(!e.isCancelled()) {
             if(!e.getMessage().isEmpty()) {
-                if(e.getMessage().startsWith(config.getString("requiredPrefix", ""))) {
+                if(e.getMessage().startsWith(config.getString("requiredPrefix", "")) && e.getMessage().length() > config.getString("requiredPrefix", "").length()) {
                     checkAPI API = new checkAPI();
                     API.player = e.getPlayer();
                     API.message = e.getMessage().substring(config.getString("requiredPrefix", "").length());
