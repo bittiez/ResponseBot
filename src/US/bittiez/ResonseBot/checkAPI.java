@@ -12,9 +12,6 @@ import java.net.URLEncoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Created by gamer on 3/11/2017.
- */
 public class checkAPI implements Runnable{
     public String message;
     public Player player;
