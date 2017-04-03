@@ -18,3 +18,11 @@ defaultColor: "&4"
 
 # If there is a prefix set, the bot will only respond to chat that begins with the defined prefix:
 requiredPrefix: "?"
+
+# If this is enabled it will send a message when a player joins your server
+# if send_to_server is false, the message will only be sent to the player who joined, otherwise it will be sent to the entire server
+on_join:
+ enable: false
+ send_to_server: false
+ msg: "[BOTNAME]&4Hey [PLAYER], if you have any questions just ask with a [PREFIX] in front of your message, I'll do my best to help you out!"
+
