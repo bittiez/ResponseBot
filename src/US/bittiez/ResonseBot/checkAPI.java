@@ -59,7 +59,7 @@ public class checkAPI implements Runnable{
                         .replace("[BOTNAME]", config.getString("botname"))
                         .replace("[RESPONSE]", response)
                         .replace("[DEFAULT]", config.getString("defaultColor", "&4"))
-                        .replace("[PLAYER]", this.player.getDisplayName())
+                        .replace("[PLAYER]", this.player.getName())
         );
     }
 
