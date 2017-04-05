@@ -21,6 +21,10 @@ requiredPrefix: "?"
 
 # If this is enabled it will send a message when a player joins your server
 # if send_to_server is false, the message will only be sent to the player who joined, otherwise it will be sent to the entire server
+# msg supports:
+# [BOTNAME] = botname from above
+# [PLAYER] = The player name who joined
+# [PREFIX] = The prefix from above
 on_join:
  enable: false
  send_to_server: false
