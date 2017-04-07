@@ -1,6 +1,6 @@
-[ ![Discord Support](https://www.mediafire.com/convkey/1f30/84f194magcxff186g.jpg) ](https://discord.gg/p5DAvc6)
-[ ![Bugs, Issues, Feature Requests](https://www.mediafire.com/convkey/3860/99n15b2cbgvnp416g.jpg) ](../../issues)
-[ ![Donate](https://www.mediafire.com/convkey/3ac7/eurlt0tntrc95zh6g.jpg) ](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=THXHQ5287TBA8)
+[ ![Discord Support](https://www.mediafire.com/convkey/510b/iw2k26exg0qlf076g.jpg) ](https://discord.gg/p5DAvc6)
+[ ![Bugs, Issues, Feature Requests](https://www.mediafire.com/convkey/2320/x80qtabf3auhhjr6g.jpg) ](../../issues)
+[ ![Donate](https://www.mediafire.com/convkey/910d/z8160kkzvezi4km6g.jpg) ](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=THXHQ5287TBA8)
 
 # ResponseBot
 
@@ -21,7 +21,7 @@ When creating text responses to your Intents you can use color codes ( &1, &2, e
 
 # Permissions
 
-https://github.com/bittiez/ResponseBot/blob/master/src/plugin.yml
+[View permissions here](../../blob/master/src/plugin.yml)
 
 
 # Installation
@@ -51,4 +51,4 @@ https://github.com/bittiez/ResponseBot/blob/master/src/plugin.yml
 
 More config options here:
 
-https://github.com/bittiez/ResponseBot/blob/master/src/config.yml
+[View default configuration file here](../../blob/master/src/config.yml)
