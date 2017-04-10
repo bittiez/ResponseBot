@@ -12,15 +12,16 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.logging.Logger;
 
-public class checkAPI implements Runnable{
+public class checkAPI implements Runnable {
+    public static Logger log;
+    public static Logger messageLogger;
     public String message;
     public Player player;
     public FileConfiguration config;
-    public static Logger log;
     public Plugin plugin;
 
     @Override
-    public void run(){
+    public void run() {
         AIConfiguration aiConfiguration = new AIConfiguration(config.getString("accesstoken"), AIConfiguration.SupportedLanguages.fromLanguageTag(config.getString("lang", "en")));
         AIDataService dataService = new AIDataService(aiConfiguration);
         AIRequest request = new AIRequest(ChatColor.stripColor(this.message));
@@ -29,7 +30,7 @@ public class checkAPI implements Runnable{
             AIResponse response = dataService.request(request);
             if (response.getStatus().getCode() == 200) {
                 String res = response.getResult().getFulfillment().getSpeech();
-                if(res.length() > 0){
+                if (res.length() > 0) {
                     plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                         public void run() {
                             if (config.getBoolean("replyToPlayer", false)) {
@@ -39,6 +40,10 @@ public class checkAPI implements Runnable{
                             }
                         }
                     }, 20);
+                    if (messageLogger != null && config.getBoolean("log_response", false)) {
+                        messageLogger.info(player.getName() + ": " + ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', this.message)));
+                        messageLogger.info(ChatColor.stripColor(genResponse(res)));
+                    }
                 }
             } else {
                 plugin.getLogger().info("There was an error with ResponseBot");
@@ -46,14 +51,12 @@ public class checkAPI implements Runnable{
             }
 
 
-
-
         } catch (AIServiceException e) {
             plugin.getLogger().warning("We ran into an error trying to get a response, please check that your client access token is correctly configured!");
         }
     }
 
-    private String genResponse(String response){
+    private String genResponse(String response) {
         return ChatColor.translateAlternateColorCodes('&',
                 config.getString("chatFormat")
                         .replace("[BOTNAME]", config.getString("botname"))

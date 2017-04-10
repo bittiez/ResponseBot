@@ -11,25 +11,23 @@ public class UpdateChecker {
     public String thisPluginVersion;
 
     /**
-     *
-     * @param remotePluginYml remote url to direct link to updated plugin.yml, like github raw version(github.com/you/repo/raw/branch/plugin.yml)
+     * @param remotePluginYml   remote url to direct link to updated plugin.yml, like github raw version(github.com/you/repo/raw/branch/plugin.yml)
      * @param thisPluginVersion The current plugin version, Plugin.getDescription.getVersion()
      */
-    public UpdateChecker(String remotePluginYml, String thisPluginVersion){
+    public UpdateChecker(String remotePluginYml, String thisPluginVersion) {
         this.remotePluginYml = remotePluginYml;
         this.thisPluginVersion = thisPluginVersion;
     }
 
     /**
-     *
      * @return Will return false if version is different, or if an error occurs.
      */
-    public UpdateStatus getStatus(){
+    public UpdateStatus getStatus() {
         try {
             FileConfiguration updated = new YamlConfiguration();
             updated.loadFromString(IOUtils.toString(URI.create(remotePluginYml)));
             String updatedVersion = updated.getString("version");
-            if(!thisPluginVersion.equals(updatedVersion))
+            if (!thisPluginVersion.equals(updatedVersion))
                 return new UpdateStatus(updatedVersion, thisPluginVersion, true, false);
             else
                 return new UpdateStatus("[ERROR]", thisPluginVersion, false, false);

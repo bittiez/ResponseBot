@@ -14,17 +14,41 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.FileHandler;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 
 public class main extends JavaPlugin implements Listener {
     private static Logger log;
     public FileConfiguration config = getConfig();
     public boolean hasUpdate = false;
+    private Logger messageLogger = Logger.getLogger("interactions");
+    private FileHandler interactionFile;
 
     @Override
     public void onEnable() {
         log = getLogger();
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd");
+            Date date = new Date();
+            File logFile = new File(getDataFolder() + File.separator + "logs" + File.separator);
+            if (!logFile.exists())
+                logFile.mkdirs();
+            interactionFile = new FileHandler(logFile.getAbsolutePath() + File.separator + dateFormat.format(date) + "-interactions.log");
+            messageLogger.addHandler(interactionFile);
+            SimpleFormatter formatter = new SimpleFormatter();
+            interactionFile.setFormatter(formatter);
+            messageLogger.setUseParentHandlers(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         createConfig();
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(this, this);
@@ -61,7 +85,7 @@ public class main extends JavaPlugin implements Listener {
                     .replace("[BOTNAME]", config.getString("botname"))
                     .replace("[PREFIX]", config.getString("requiredPrefix")));
             if (config.getBoolean("on_join.send_to_server")) {
-                for(Player p : getServer().getOnlinePlayers()){
+                for (Player p : getServer().getOnlinePlayers()) {
                     p.sendMessage(msg);
                 }
             } else {
@@ -80,6 +104,7 @@ public class main extends JavaPlugin implements Listener {
                     API.message = e.getMessage().substring(config.getString("requiredPrefix", "").length());
                     API.plugin = this;
                     API.config = config;
+                    API.messageLogger = messageLogger;
                     API.log = log;
 
                     new Thread(API).start();

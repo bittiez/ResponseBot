@@ -30,3 +30,6 @@ on_join:
  send_to_server: false
  msg: "[BOTNAME]&4Hey [PLAYER], if you have any questions just ask with a [PREFIX] in front of your message, I'll do my best to help you out!"
 
+# Should we log and save responses to interactions.log?
+log_response: false
+
